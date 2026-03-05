@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weather</title>
 
 <style>
-html, body {
-margin: 0;
-padding: 0;
-width: 100%;
-height: 100%;
-overflow: hidden;
-background: black;
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:black;
 }
 
-iframe {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-border: none;
+.container{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+overflow:hidden;
+}
+
+iframe{
+border:none;
+width:1000px;
+height:1600px;
+transform:scale(1.8);
+transform-origin:top left;
 }
 </style>
 
@@ -29,10 +35,9 @@ border: none;
 
 <body>
 
-<iframe
-src="https://emb.fouita.com/widget/0x3f3080/ftql2dgew"
-title="Detailed Weather">
-</iframe>
+<div class="container">
+<iframe src="https://emb.fouita.com/widget/0x3f3080/ftql2dgew"></iframe>
+</div>
 
 </body>
 </html>
