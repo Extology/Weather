@@ -2,35 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Weather</title>
 
 <style>
+  html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    overflow:hidden;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:24px;
+  }
 
-body{
-margin:0;
-background:#000;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+  /* grote duidelijke test */
+  .version{
+    color:#fff;
+    font-size:48px;
+    font-weight:800;
+    letter-spacing:1px;
+  }
 
-/* widget groter maken */
-#weather-container{
-width:900px;
-}
+  /* widget centreren + vergroten (werkt ook als de widget een vaste grootte heeft) */
+  #weather-container{
+    transform: scale(2.2);
+    transform-origin:center;
+  }
 
+  /* probeer ook het iframe mee te nemen als het zo wordt ingeladen */
+  #weather-container iframe{
+    transform: scale(1.0);
+    transform-origin:center;
+  }
 </style>
-
 </head>
 
 <body>
 
+<div class="version">VERSION TEST</div>
+
 <div id="weather-container">
-
-<a href="https://weatherwidget.org/" id="ww_a6a67b8c34444" target="_blank">Weather</a>
-<script async src="https://apps.weatherwidget.org/js/?id=ww_a6a67b8c34444"></script>
-
+  <a href="https://weatherwidget.org/" id="ww_a6a67b8c34444" target="_blank">Weather</a>
+  <script async src="https://apps.weatherwidget.org/js/?id=ww_a6a67b8c34444"></script>
 </div>
 
 </body>
