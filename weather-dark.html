@@ -17,9 +17,18 @@ justify-content:center;
 overflow:hidden;
 }
 
-/* widget schalen voor 1080x1920 scherm */
+/* container die altijd scherm vult */
+.wrapper{
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* widget automatisch schalen */
 .widget{
-transform: scale(2.6);
+width:500px;
 transform-origin:center;
 }
 
@@ -28,6 +37,8 @@ transform-origin:center;
 </head>
 
 <body>
+
+<div class="wrapper">
 
 <div class="widget">
 
@@ -55,10 +66,10 @@ data-unit-system="METRIC"
 data-skin="dark"
 data-widget-type="upcoming"
 style="padding-bottom:22px;position:relative;">
-
 <a href="https://weather.tomorrow.io/" target="_blank">
 <img src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250">
 </a>
+</div>
 
 </div>
 
