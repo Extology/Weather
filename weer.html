@@ -7,20 +7,17 @@
 
 <style>
 
-html, body{
+html,body{
 margin:0;
-width:100%;
 height:100%;
 background:#000;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
 }
 
-/* widget groter maken */
-#weather-container{
-transform:scale(3);
+#weather{
+transform:scale(2.8);
 transform-origin:center;
 }
 
@@ -30,12 +27,29 @@ transform-origin:center;
 
 <body>
 
-<div id="weather-container">
+<div id="weather">
 
-<a href="https://weatherwidget.org/" id="ww_a6a67b8c34444" target="_blank">Weather</a>
-<script async src="https://apps.weatherwidget.org/js/?id=ww_a6a67b8c34444"></script>
+<a class="weatherwidget-io"
+href="https://forecast7.com/en/50d943d12/roeselare/"
+data-label_1="ROESELARE"
+data-label_2="WEATHER"
+data-theme="dark">
+ROESELARE WEATHER
+</a>
 
 </div>
+
+<script>
+!function(d,s,id){
+var js,fjs=d.getElementsByTagName(s)[0];
+if(!d.getElementById(id)){
+js=d.createElement(s);
+js.id=id;
+js.src='https://weatherwidget.io/js/widget.min.js';
+fjs.parentNode.insertBefore(js,fjs);
+}
+}(document,'script','weatherwidget-io-js');
+</script>
 
 </body>
 </html>
