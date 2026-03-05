@@ -1,75 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <style>
-  html, body{margin:0;width:100%;height:100%;background:#000;overflow:hidden;}
-  .stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;background:#000;}
-  .scaler{transform-origin:center;}
 
-  /* HARD override */
-  .tomorrow, .tomorrow *{
-    background-color:#000 !important;
-    background-image:none !important;
-    box-shadow:none !important;
-  }
+html, body{
+margin:0;
+width:100%;
+height:100%;
+background:#1c1f36;
+overflow:hidden;
+}
+
+/* container */
+.stage{
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#1c1f36;
+}
+
+/* widget schaal */
+.scaler{
+transform-origin:center;
+will-change: transform;
+}
+
 </style>
+
 </head>
+
 <body>
-  <div class="stage">
-    <div class="scaler" id="scaler">
 
-      <script>
-        (function(d, s, id) {
-          if (d.getElementById(id)) {
-            if (window.__TOMORROW__) window.__TOMORROW__.renderWidget();
-            return;
-          }
-          const fjs = d.getElementsByTagName(s)[0];
-          const js = d.createElement(s);
-          js.id = id;
-          js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        })(document, 'script', 'tomorrow-sdk');
-      </script>
+<div class="stage">
 
-      <div class="tomorrow"
-        data-location-id="009025"
-        data-language="EN"
-        data-unit-system="METRIC"
-        data-skin="dark"
-        data-widget-type="upcoming"
-        style="padding-bottom:22px;position:relative;">
-      </div>
-
-    </div>
-  </div>
+<div class="scaler" id="scaler">
 
 <script>
-  function fit() {
-    const scaler = document.getElementById('scaler');
-    const w = scaler.offsetWidth;
-    const h = scaler.offsetHeight;
-    if (!w || !h) return;
+(function(d, s, id) {
+if (d.getElementById(id)) {
+if (window.__TOMORROW__) {
+window.__TOMORROW__.renderWidget();
+}
+return;
+}
+const fjs = d.getElementsByTagName(s)[0];
+const js = d.createElement(s);
+js.id = id;
+js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
 
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-
-    // marge zodat hij nooit afsnijdt
-    const s = Math.min(vw / w, vh / h) * 0.95;
-    scaler.style.transform = `scale(${s})`;
-  }
-
-  // wachten tot widget gerenderd is
-  (function waitForRender(){
-    fit();
-    const scaler = document.getElementById('scaler');
-    if (scaler.offsetHeight < 50) requestAnimationFrame(waitForRender);
-  })();
-
-  window.addEventListener('resize', fit);
-  setInterval(fit, 2000);
+fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'tomorrow-sdk');
 </script>
+
+<div class="tomorrow"
+data-location-id="009025"
+data-language="EN"
+data-unit-system="METRIC"
+data-skin="dark"
+data-widget-type="upcoming"
+style="padding-bottom:22px;position:relative;">
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function fitWidget(){
+
+const scaler = document.getElementById("scaler");
+
+const widgetWidth = scaler.offsetWidth;
+const widgetHeight = scaler.offsetHeight;
+
+if(!widgetWidth || !widgetHeight) return;
+
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+
+const scale = Math.min(screenWidth/widgetWidth, screenHeight/widgetHeight) * 0.95;
+
+scaler.style.transform = "scale(" + scale + ")";
+
+}
+
+/* wachten tot widget geladen is */
+function waitForWidget(){
+
+fitWidget();
+
+const scaler = document.getElementById("scaler");
+
+if(scaler.offsetHeight < 100){
+requestAnimationFrame(waitForWidget);
+}
+
+}
+
+waitForWidget();
+
+window.addEventListener("resize", fitWidget);
+
+/* signage refresh */
+setInterval(fitWidget,2000);
+
+</script>
+
 </body>
 </html>
