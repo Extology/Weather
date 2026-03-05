@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+html, body{
+margin:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* widget vergroten voor signage scherm */
+.widget{
+transform: scale(1.8);
+transform-origin:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="widget">
+
+<script>
+(function(d, s, id) {
+if (d.getElementById(id)) {
+if (window.__TOMORROW__) {
+window.__TOMORROW__.renderWidget();
+}
+return;
+}
+const fjs = d.getElementsByTagName(s)[0];
+const js = d.createElement(s);
+js.id = id;
+js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'tomorrow-sdk');
+</script>
+
+<div class="tomorrow"
+data-location-id="009025"
+data-language="EN"
+data-unit-system="METRIC"
+data-skin="dark"
+data-widget-type="upcoming"
+style="position:relative;">
+
+<a href="https://weather.tomorrow.io/" target="_blank">
+<img src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250">
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
