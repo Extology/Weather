@@ -1,161 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exterus Signage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather</title>
 
 <style>
-
-html,body{
-margin:0;
-padding:0;
-width:100%;
-height:100%;
-background:#0b0f14;
-color:white;
-font-family:Arial, Helvetica, sans-serif;
-overflow:hidden;
+html, body {
+margin: 0;
+padding: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: black;
 }
 
-.screen{
-width:100vw;
-height:100vh;
-display:grid;
-grid-template-rows:1fr 120px;
+iframe {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+border: none;
 }
-
-.content{
-display:grid;
-grid-template-columns:1fr 1fr;
-padding:40px;
-gap:40px;
-}
-
-.card{
-background:rgba(255,255,255,0.06);
-border-radius:20px;
-padding:30px;
-}
-
-.logo{
-position:absolute;
-top:30px;
-left:40px;
-height:70px;
-}
-
-.tomorrow{
-width:100% !important;
-height:100% !important;
-}
-
-.clock{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-}
-
-.time{
-font-size:120px;
-font-weight:bold;
-}
-
-.date{
-font-size:40px;
-opacity:0.8;
-}
-
-.ticker{
-background:#111;
-display:flex;
-align-items:center;
-font-size:34px;
-padding-left:40px;
-overflow:hidden;
-}
-
-.scroll{
-white-space:nowrap;
-display:inline-block;
-padding-left:100%;
-animation:scroll 40s linear infinite;
-}
-
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-100%)}
-}
-
 </style>
+
 </head>
 
 <body>
 
-<img src="logo-exterus.png" class="logo">
-
-<div class="screen">
-
-<div class="content">
-
-<div class="card">
-
-<a href="https://weather.tomorrow.io/" target="_blank">
-
-<div class="tomorrow"
-data-location-id="VUL_HIER_ROESELARE_ID_IN"
-data-language="NL"
-data-unit-system="METRIC"
-data-skin="light"
-data-widget-type="upcoming">
-</div>
-
-</a>
-
-</div>
-
-<div class="card clock">
-
-<div class="time" id="time"></div>
-<div class="date" id="date"></div>
-
-</div>
-
-</div>
-
-<div class="ticker">
-<div class="scroll" id="rss">Welkom bij Exterus Lightology ✦ Nieuwe projecten ✦ Nieuwe armaturen ✦ </div>
-</div>
-
-</div>
-
-<script>
-
-function updateClock(){
-const now = new Date();
-
-document.getElementById("time").innerHTML =
-now.toLocaleTimeString("nl-BE",{hour:'2-digit',minute:'2-digit'});
-
-document.getElementById("date").innerHTML =
-now.toLocaleDateString("nl-BE",{weekday:'long',day:'numeric',month:'long'});
-}
-
-setInterval(updateClock,1000);
-updateClock();
-
-</script>
-
-<script>
-(function(d, s, id) {
-if (d.getElementById(id)) return;
-var js = d.createElement(s);
-js.id = id;
-js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
-d.getElementsByTagName("head")[0].appendChild(js);
-})(document, "script", "tomorrow-sdk");
-</script>
+<iframe
+src="https://emb.fouita.com/widget/0x3f3080/ftql2dgew"
+title="Detailed Weather">
+</iframe>
 
 </body>
 </html>
