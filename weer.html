@@ -1,55 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weather</title>
-
-<style>
-
-html,body{
-margin:0;
-height:100%;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-#weather{
-transform:scale(2.8);
-transform-origin:center;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div id="weather">
-
-<a class="weatherwidget-io"
-href="https://forecast7.com/en/50d943d12/roeselare/"
-data-label_1="ROESELARE"
-data-label_2="WEATHER"
-data-theme="dark">
-ROESELARE WEATHER
-</a>
-
-</div>
-
 <script>
-!function(d,s,id){
-var js,fjs=d.getElementsByTagName(s)[0];
-if(!d.getElementById(id)){
-js=d.createElement(s);
-js.id=id;
-js.src='https://weatherwidget.io/js/widget.min.js';
-fjs.parentNode.insertBefore(js,fjs);
-}
-}(document,'script','weatherwidget-io-js');
-</script>
+        (function(d, s, id) {
+            if (d.getElementById(id)) {
+                if (window.__TOMORROW__) {
+                    window.__TOMORROW__.renderWidget();
+                }
+                return;
+            }
+            const fjs = d.getElementsByTagName(s)[0];
+            const js = d.createElement(s);
+            js.id = id;
+            js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
 
-</body>
-</html>
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'tomorrow-sdk');
+        </script>
+
+        <div class="tomorrow"
+           data-location-id="009025"
+           data-language="EN"
+           data-unit-system="METRIC"
+           data-skin="light"
+           data-widget-type="upcoming"
+           style="padding-bottom:22px;position:relative;"
+        >
+          <a
+            href="https://weather.tomorrow.io/"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+          >
+            <img
+              alt="Powered by Tomorrow.io"
+              src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+              width="250"
+              height="18"
+            />
+          </a>
+        </div>
