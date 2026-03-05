@@ -1,70 +1,84 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
-
-html, body{
-margin:0;
-width:100%;
-height:100%;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-}
-
-/* widget kleiner maken */
-.widget{
-transform: scale(1.6);
-transform-origin:center;
-}
-
-/* Tomorrow kaart transparant maken */
-.tomorrow{
-background:transparent !important;
-}
-
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+  .stage{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#000;
+  }
+  .scaler{
+    transform-origin: center;
+    will-change: transform;
+  }
 </style>
-
 </head>
-
 <body>
+  <div class="stage">
+    <div class="scaler" id="scaler">
 
-<div class="widget">
+      <script>
+        (function(d, s, id) {
+          if (d.getElementById(id)) {
+            if (window.__TOMORROW__) window.__TOMORROW__.renderWidget();
+            return;
+          }
+          const fjs = d.getElementsByTagName(s)[0];
+          const js = d.createElement(s);
+          js.id = id;
+          js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'tomorrow-sdk');
+      </script>
+
+      <div class="tomorrow"
+        data-location-id="009025"
+        data-language="EN"
+        data-unit-system="METRIC"
+        data-skin="dark"
+        data-widget-type="upcoming"
+        style="padding-bottom:22px;position:relative;">
+      </div>
+
+    </div>
+  </div>
 
 <script>
-(function(d, s, id) {
-if (d.getElementById(id)) {
-if (window.__TOMORROW__) {
-window.__TOMORROW__.renderWidget();
-}
-return;
-}
-const fjs = d.getElementsByTagName(s)[0];
-const js = d.createElement(s);
-js.id = id;
-js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+  function fit() {
+    const scaler = document.getElementById('scaler');
+    const w = scaler.offsetWidth;
+    const h = scaler.offsetHeight;
+    if (!w || !h) return;
 
-fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'tomorrow-sdk');
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // 0.95 = klein beetje marge zodat hij nooit afsnijdt
+    const s = Math.min(vw / w, vh / h) * 0.95;
+    scaler.style.transform = `scale(${s})`;
+  }
+
+  // Wacht tot widget echt gerenderd is (height > 0), dan schalen
+  (function waitForRender(){
+    fit();
+    const scaler = document.getElementById('scaler');
+    if (scaler.offsetHeight < 50) requestAnimationFrame(waitForRender);
+  })();
+
+  window.addEventListener('resize', fit);
+  setInterval(fit, 3000); // signage/webviews refreshen soms laat; dit houdt het stabiel
 </script>
-
-<div class="tomorrow"
-data-location-id="009025"
-data-language="EN"
-data-unit-system="METRIC"
-data-skin="dark"
-data-widget-type="upcoming"
-style="padding-bottom:22px;position:relative;">
-<a href="https://weather.tomorrow.io/" target="_blank">
-<img src="https://weather-website-client.tomorrow.io/img/powered-by.svg" width="250">
-</a>
-</div>
-
-</div>
-
 </body>
 </html>
