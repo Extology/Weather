@@ -4,18 +4,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body{
+html, body{
 margin:0;
+padding:0;
+width:100%;
+height:100%;
 background:black;
+overflow:hidden;
 display:flex;
 justify-content:center;
-align-items:center;
-height:100vh;
+align-items:flex-start;
 }
 
-.widget{
-transform: scale(2.5);
+/* container die de widget groter maakt */
+.scale{
+transform: scale(2.8);
 transform-origin: top center;
+}
+
+iframe{
+border:none;
+width:400px;
+height:900px;
 }
 </style>
 
@@ -23,11 +33,9 @@ transform-origin: top center;
 
 <body>
 
-<div class="widget">
-<div class="elfsight-app-https://dd9df1c6b07a46f3b092696deb806dd9.elf.site"></div>
+<div class="scale">
+<iframe src="https://dd9df1c6b07a46f3b092696deb806dd9.elf.site"></iframe>
 </div>
-
-<script src="https://apps.elfsight.com/p/platform.js" defer></script>
 
 </body>
 </html>
